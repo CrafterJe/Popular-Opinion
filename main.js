@@ -6,14 +6,15 @@ const fs = require('fs');
 function createWindow() {
   const win = new BrowserWindow({
     width: 1000,
-    height: 700,
+    height: 1300,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
       nodeIntegration: false
     }
   });
-
+  win.maximize();
+  win.setMenu(null);
   win.loadFile(path.join(__dirname, 'public', 'index.html'));
 }
 
