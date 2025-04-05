@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configuración – Popular Opinion</title>
+  <link rel="stylesheet" href="../src/styles.css" />
+</head>
+<body>
+  <div class="menu-container">
+    <h1>⚙️ Crear Ronda</h1>
+
+    <label for="inputPregunta">Pregunta:</label><br />
+    <input type="text" id="inputPregunta" placeholder="Ej. ¿Cuál es tu fruta favorita?" /><br /><br />
+
+    <div id="respuestasContainer">
+      <!-- Aquí se agregarán los inputs dinámicos -->
+    </div>
+
+    <button id="btnAgregarRespuesta">➕ Agregar Respuesta</button><br /><br />
+    <button id="btnGuardarRonda">✅ Agregar Ronda</button>
+
+    <hr />
+    <h2>📝 Rondas Agregadas</h2>
+    <ul id="listaRondas"></ul>
+
+    <button id="btnGuardarJuego">💾 Guardar Juego</button>
+
+    <button onclick="window.location.href='index.html'">← Volver al menú</button>
+  </div>
+
+  <script src="../src/config.js"></script>
+</body>
+</html>
