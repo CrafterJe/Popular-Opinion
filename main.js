@@ -20,18 +20,33 @@ function createWindow() {
 }
 
 /* Config */
-ipcMain.on('guardar-juego', (event, rondas) => {
-    const ruta = path.join(__dirname, 'data', 'mi_juego.json');
-    const data = JSON.stringify(rondas, null, 2);
-  
-    fs.writeFile(ruta, data, (err) => {
-      if (err) {
-        console.error('Error al guardar el juego:', err);
-      } else {
-        console.log('Juego guardado exitosamente en', ruta);
-      }
-    });
+ipcMain.on('guardar-juego-unico', (event, nombreOriginal, contenido) => {
+  const dir = path.join(__dirname, 'data');
+
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+
+  const extension = path.extname(nombreOriginal);
+  const base = path.basename(nombreOriginal, extension);
+
+  let nombreFinal = nombreOriginal;
+  let contador = 1;
+
+  while (fs.existsSync(path.join(dir, nombreFinal))) {
+    nombreFinal = `${base} (${contador})${extension}`;
+    contador++;
+  }
+
+  const ruta = path.join(dir, nombreFinal);
+  const data = JSON.stringify(contenido, null, 2);
+
+  fs.writeFile(ruta, data, (err) => {
+    if (err) {
+      console.error("Error al guardar partida:", err);
+    } else {
+      console.log("Guardado exitoso:", nombreFinal);
+    }
   });
+});
 
 /* Saved Games */
 ipcMain.handle('obtener-partidas', async () => {

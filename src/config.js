@@ -134,8 +134,20 @@ btnGuardarJuego.addEventListener("click", () => {
     return;
   }
 
-  // Llamamos al backend de Electron usando preload.js
-  window.electronAPI.guardarJuego(rondasAgregadas);
+  const nombreArchivo = document.getElementById("nombreArchivo").value.trim();
 
-  alert("🎉 Juego guardado correctamente");// en /data/mi_juego.json
+  if (!nombreArchivo) {
+    alert("Debes ingresar un nombre para el archivo.");
+    return;
+  }
+
+  // Adjuntamos fecha de modificación
+  const contenido = {
+    actualizado: new Date().toISOString(),
+    rondas: rondasAgregadas
+  };
+
+  window.electronAPI.guardarJuegoUnico(`${nombreArchivo}.json`, contenido);
+
+  alert("🎉 Juego guardado correctamente.");
 });
