@@ -7,6 +7,16 @@ let numRespuestas = 0;
 const maxRespuestas = 10;
 const rondasAgregadas = [];
 
+const partidaCargada = localStorage.getItem("partida_en_edicion");
+
+if (partidaCargada) {
+  const datos = JSON.parse(partidaCargada);
+  rondasAgregadas.push(...datos);
+  mostrarRondasAgregadas();
+  localStorage.removeItem("partida_en_edicion");
+}
+
+
 function crearCampoRespuesta() {
     if (numRespuestas >= maxRespuestas) return;
   

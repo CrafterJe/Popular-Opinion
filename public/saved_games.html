@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Popular Opinion</title>
+  <title>Partidas Guardadas – Popular Opinion</title>
   <link rel="stylesheet" href="../src/styles.css" />
 </head>
 <body>
   <div class="menu-container">
-    <h1>🎮 Popular Opinion</h1>
-    <button id="btnPlay">Jugar</button>
-    <button id="btnConfig">Configuración</button>
-    <button id="btnSavedGames">Partidas Guardadas</button>
+    <h1>📁 Partidas Guardadas</h1>
+    <ul id="listaPartidas"></ul>
+    <button onclick="window.location.href='index.html'">← Volver al menú</button>
   </div>
 
-  <script src="../src/renderer.js"></script>
+  <script src="../src/saved_games.js" defer></script>
 </body>
 </html>

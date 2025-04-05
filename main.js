@@ -1,7 +1,8 @@
 const { app, BrowserWindow } = require('electron');
-const path = require('path');
+const path = require('path'); 
 const { ipcMain } = require('electron');
 const fs = require('fs');
+const dataPath = path.join(__dirname, 'data'); 
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -18,6 +19,7 @@ function createWindow() {
   win.loadFile(path.join(__dirname, 'public', 'index.html'));
 }
 
+/* Config */
 ipcMain.on('guardar-juego', (event, rondas) => {
     const ruta = path.join(__dirname, 'data', 'mi_juego.json');
     const data = JSON.stringify(rondas, null, 2);
@@ -30,6 +32,30 @@ ipcMain.on('guardar-juego', (event, rondas) => {
       }
     });
   });
+
+/* Saved Games */
+ipcMain.handle('obtener-partidas', async () => {
+    if (!fs.existsSync(dataPath)) fs.mkdirSync(dataPath);
+    const archivos = fs.readdirSync(dataPath).filter(file => file.endsWith('.json'));
+    return archivos;
+  });
+  
+ipcMain.on('eliminar-partida', (event, nombre) => {
+  const ruta = path.join(dataPath, nombre);
+  if (fs.existsSync(ruta)) {
+    fs.unlinkSync(ruta);
+    console.log(`Partida eliminada: ${nombre}`);
+  }
+});
+
+ipcMain.handle('cargar-partida', async (event, nombre) => {
+  const ruta = path.join(dataPath, nombre);
+  if (fs.existsSync(ruta)) {
+    const contenido = fs.readFileSync(ruta, 'utf-8');
+    return JSON.parse(contenido);
+  }
+  return null;
+});
 
 app.whenReady().then(() => {
   createWindow();
