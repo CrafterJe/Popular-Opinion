@@ -124,14 +124,8 @@ btnGuardarJuego.addEventListener("click", () => {
     return;
   }
 
-  const dataStr = JSON.stringify(rondasAgregadas, null, 2);
-  const blob = new Blob([dataStr], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
+  // Llamamos al backend de Electron usando preload.js
+  window.electronAPI.guardarJuego(rondasAgregadas);
 
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "mi_juego.json";
-  a.click();
-
-  URL.revokeObjectURL(url);
+  alert("🎉 Juego guardado correctamente");// en /data/mi_juego.json
 });

@@ -1,0 +1,19 @@
+[
+  {
+    "pregunta": "Juego anual",
+    "respuestas": [
+      {
+        "texto": "FORT",
+        "puntos": 10
+      },
+      {
+        "texto": "WZ",
+        "puntos": 9
+      },
+      {
+        "texto": "PUBG",
+        "puntos": 8
+      }
+    ]
+  }
+]
