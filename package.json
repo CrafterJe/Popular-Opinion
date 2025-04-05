@@ -1,0 +1,16 @@
+{
+  "name": "popular-opinion",
+  "version": "1.0.0",
+  "description": "A local quiz game inspired by survey-style TV shows.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "Raúl",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "electron": "^35.1.4"
+  }
+}
