@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const partida = localStorage.getItem("partida_en_edicion");
     const nombrePartida = localStorage.getItem("nombre_partida");
     if (!partida || !nombrePartida) {
-      alert("No se pudo cargar la partida.");
+        mostrarToast("No se pudo cargar la partida.");
       window.location.href ="saved_games.html"
       return;
     }
@@ -26,6 +26,28 @@ document.addEventListener("DOMContentLoaded", () => {
     actualizarSelector();
     mostrarRonda();
   
+    function mostrarToast(mensaje) {
+        let container = document.querySelector('.toast-container');
+        if (!container) {
+          container = document.createElement('div');
+          container.className = 'toast-container';
+          document.body.appendChild(container);
+        }
+      
+        const toast = document.createElement('div');
+        toast.className = 'toast-custom';
+        toast.textContent = mensaje;
+        container.appendChild(toast);
+      
+        setTimeout(() => {
+          toast.remove();
+          if (container.children.length === 0) {
+            container.remove();
+          }
+        }, 3000);
+      }
+      
+      
     function actualizarSelector() {
       selectorRondas.innerHTML = "";
       rondas.forEach((ronda, i) => {
@@ -93,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
     btnGuardarRonda.addEventListener("click", () => {
       const pregunta = inputPregunta.value.trim();
-      if (!pregunta) return alert("Escribe la pregunta.");
+      if (!pregunta) return mostrarToast("Escribe la pregunta.");
   
       const respuestas = [];
       const textos = respuestasContainer.querySelectorAll(".respuesta-texto");
@@ -103,17 +125,17 @@ document.addEventListener("DOMContentLoaded", () => {
         const texto = textos[i].value.trim();
         const punto = parseInt(puntos[i].value);
         if (!texto || isNaN(punto)) {
-          return alert("Completa todas las respuestas con puntos válidos.");
+          return mostrarToast("Completa todas las respuestas con puntos válidos.");
         }
         respuestas.push({ texto, puntos: punto });
       }
   
       if (respuestas.length < 3 || respuestas.length > 10) {
-        return alert("Debe haber entre 3 y 10 respuestas.");
+        return mostrarToast("Debe haber entre 3 y 10 respuestas.");
       }
   
       rondas[rondaActual] = { pregunta, respuestas };
-      alert("Ronda guardada.");
+      mostrarToast("Ronda guardada.");
     });
   
     selectorRondas.addEventListener("change", () => {
@@ -122,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   
     btnEliminarRonda.addEventListener("click", () => {
-      if (rondas.length <= 1) return alert("Debe haber al menos una ronda.");
+      if (rondas.length <= 1) return mostrarToast("Debe haber al menos una ronda.");
       rondas.splice(rondaActual, 1);
       rondaActual = 0;
       actualizarSelector();
@@ -154,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
       
         window.electronAPI.guardarJuegoUnico(nombre, data);
-        alert("🎉 Partida guardada exitosamente.");
+        mostrarToast("🎉 Partida guardada exitosamente.");
       });      
   });
   

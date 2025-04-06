@@ -8,6 +8,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const maxRespuestas = 10;
     const rondasAgregadas = [];
 
+    function mostrarToast(mensaje) {
+        let container = document.querySelector('.toast-container');
+        if (!container) {
+          container = document.createElement('div');
+          container.className = 'toast-container';
+          document.body.appendChild(container);
+        }
+      
+        const toast = document.createElement('div');
+        toast.className = 'toast-custom';
+        toast.textContent = mensaje;
+        container.appendChild(toast);
+      
+        setTimeout(() => {
+          toast.remove();
+          if (container.children.length === 0) {
+            container.remove();
+          }
+        }, 3000);
+      }          
 
     function crearCampoRespuesta() {
         if (numRespuestas >= maxRespuestas) return;
@@ -71,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const respuestasPuntos = document.querySelectorAll(".respuesta-puntos");
     
         if (!pregunta) {
-          alert("Por favor ingresa una pregunta.");
+            mostrarToast("Por favor ingresa una pregunta.");
           return;
         }
     
@@ -82,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const puntos = parseInt(respuestasPuntos[i].value);
         
           if (!texto || isNaN(puntos)) {
-            alert("Todas las respuestas deben tener texto y puntos válidos.");
+            mostrarToast("Todas las respuestas deben tener texto y puntos válidos.");
             return;
           }
       
@@ -90,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     
         if (respuestas.length < 3 || respuestas.length > 10) {
-          alert("Debes agregar entre 3 y 10 respuestas.");
+            mostrarToast("Debes agregar entre 3 y 10 respuestas.");
           return;
         }
     
@@ -123,14 +143,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     btnGuardarJuego.addEventListener("click", () => {
       if (rondasAgregadas.length === 0) {
-        alert("Debes agregar al menos una ronda para guardar el juego.");
+        mostrarToast("Debes agregar al menos una ronda para guardar el juego.");
         return;
       }
 
       const nombreArchivo = document.getElementById("nombreArchivo").value.trim();
 
       if (!nombreArchivo) {
-        alert("Debes ingresar un nombre para el archivo.");
+        mostrarToast("Debes ingresar un nombre para el archivo.");
         return;
       }
 
@@ -142,10 +162,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (window.electronAPI?.guardarJuegoNuevo) {
           window.electronAPI.guardarJuegoNuevo(`${nombreArchivo}.json`, contenido);
-          alert("🎉 Juego guardado correctamente.");
+          mostrarToast("🎉 Juego guardado correctamente.");
         } else {
           console.warn("⚠️ Estás en un navegador, no se puede guardar el archivo.");
-          alert("Esta acción solo está disponible en la app de escritorio.");
+          mostrarToast("Esta acción solo está disponible en la app de escritorio.");
         }
     });
 });

@@ -1,0 +1,39 @@
+{
+  "actualizado": "2025-04-06T03:23:34.816Z",
+  "rondas": [
+    {
+      "pregunta": "qwe",
+      "respuestas": [
+        {
+          "texto": "q",
+          "puntos": 1
+        },
+        {
+          "texto": "w",
+          "puntos": 2
+        },
+        {
+          "texto": "e",
+          "puntos": 30
+        }
+      ]
+    },
+    {
+      "pregunta": "rty",
+      "respuestas": [
+        {
+          "texto": "r",
+          "puntos": 1
+        },
+        {
+          "texto": "t",
+          "puntos": 2
+        },
+        {
+          "texto": "y",
+          "puntos": 30
+        }
+      ]
+    }
+  ]
+}
