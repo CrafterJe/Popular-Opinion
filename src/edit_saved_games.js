@@ -54,7 +54,14 @@ document.addEventListener("DOMContentLoaded", () => {
         </h2>
         <div id="${collapseId}" class="accordion-collapse collapse" aria-labelledby="${headerId}" data-index="${index}">
           <div class="accordion-body">
+            <label class="form-label fw-bold">Pregunta:</label>
             <input type="text" class="form-control pregunta-input mb-3" placeholder="Escribe la pregunta" value="${ronda.pregunta || ""}">
+
+            <div class="row fw-bold text-secondary align-items-center mb-2">
+              <div class="col-6">Respuestas:</div>
+              <div class="col-4">Puntos</div>
+              <div class="col-2 text-end"></div>
+            </div>
             <div class="respuestas-container mb-3"></div>
             <div class="mb-3 d-flex flex-wrap gap-2">
               <button class="btn btn-outline-primary btn-sm btnAgregarRespuesta">➕ Respuesta</button>
@@ -114,11 +121,17 @@ document.addEventListener("DOMContentLoaded", () => {
   
       ronda.respuestas.forEach((r, i) => {
         const div = document.createElement("div");
-        div.className = "d-flex align-items-center gap-2 mb-2";
+        div.className = "row align-items-center mb-2";
         div.innerHTML = `
+          <div class="col-6">
           <input type="text" class="form-control respuesta-texto" value="${r.texto}" placeholder="Texto" />
-          <input type="number" class="form-control respuesta-puntos" value="${r.puntos}" min="1" max="100" style="width:100px" />
-          <button class="btn btn-outline-danger btn-sm btnQuitar">🗑️</button>
+          </div>
+          <div class="col-4">
+            <input type="number" class="form-control respuesta-puntos" value="${r.puntos}" min="1" max="100" class="form-control" />
+          </div>
+          <div class="col-2 text-end">
+            <button class="btn btn-outline-danger btn-sm btnQuitar">🗑️</button>
+          </div>
         `;
         div.querySelector(".respuesta-texto").addEventListener("input", () => cambiosPendientes[index] = true);
         div.querySelector(".respuesta-puntos").addEventListener("input", () => cambiosPendientes[index] = true);
