@@ -234,18 +234,60 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   
     btnGuardarPartida.addEventListener("click", () => {
+      const nuevaRondas = [];
+      const accordionItems = accordion.querySelectorAll(".accordion-item");
+    
+      for (let i = 0; i < accordionItems.length; i++) {
+        const item = accordionItems[i];
+        const preguntaInput = item.querySelector(".pregunta-input");
+        const textos = item.querySelectorAll(".respuesta-texto");
+        const puntos = item.querySelectorAll(".respuesta-puntos");
+    
+        const pregunta = preguntaInput.value.trim();
+        if (!pregunta) {
+          mostrarToast(`❌ Pregunta vacía en ronda ${i + 1}`);
+          return;
+        }
+    
+        const respuestas = [];
+        for (let j = 0; j < textos.length; j++) {
+          const texto = textos[j].value.trim();
+          const punto = parseInt(puntos[j].value);
+          if (!texto || isNaN(punto)) {
+            mostrarToast(`❌ Respuesta inválida en ronda ${i + 1}`);
+            return;
+          }
+          respuestas.push({ texto, puntos: punto });
+        }
+    
+        if (respuestas.length < 3 || respuestas.length > 10) {
+          mostrarToast(`❌ La ronda ${i + 1} debe tener entre 3 y 10 respuestas`);
+          return;
+        }
+    
+        nuevaRondas.push({ pregunta, respuestas });
+        cambiosPendientes[i] = false;
+      }
+    
       const nombre = inputNombreArchivo.value.endsWith('.json')
         ? inputNombreArchivo.value
         : `${inputNombreArchivo.value}.json`;
-  
+    
       const data = {
         actualizado: new Date().toISOString(),
-        rondas
+        rondas: nuevaRondas
       };
-  
+    
+      // Guardamos
+      rondas = nuevaRondas;
       window.electronAPI.guardarJuegoUnico(nombre, data);
       mostrarToast("🎉 Partida guardada exitosamente.");
+    
+      renderizarTodasLasRondas();
+      
+      window.location.href = "saved_games.html";
     });
+    
 
     btnVolverMenu.addEventListener("click", () => {
       const hayCambios = Object.values(cambiosPendientes).some(p => p === true);

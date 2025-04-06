@@ -1,20 +1,20 @@
 {
-  "actualizado": "2025-04-06T04:38:22.037Z",
+  "actualizado": "2025-04-06T07:52:52.713Z",
   "rondas": [
     {
       "pregunta": "qwe",
       "respuestas": [
         {
           "texto": "q",
-          "puntos": 1
+          "puntos": 9
         },
         {
           "texto": "w",
-          "puntos": 2
+          "puntos": 8
         },
         {
           "texto": "e",
-          "puntos": 30
+          "puntos": 7
         }
       ]
     },
@@ -23,15 +23,15 @@
       "respuestas": [
         {
           "texto": "r",
-          "puntos": 1
+          "puntos": 9
         },
         {
           "texto": "t",
-          "puntos": 2
+          "puntos": 8
         },
         {
           "texto": "y",
-          "puntos": 30
+          "puntos": 7
         }
       ]
     }
