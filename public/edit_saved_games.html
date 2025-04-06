@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../src/styles.css" />
 </head>
-<body class="bg-dark text-white d-flex align-items-center justify-content-center vh-100">
+<body class="bg-dark text-white py-5">
 
-  <div class="container py-5">
+  <div class="container">
     <h1 class="mb-4 text-center">📝 Editar Partida</h1>
 
     <div class="mb-3">
@@ -17,39 +17,26 @@
       <input type="text" id="nombreArchivo" class="form-control" disabled />
     </div>
 
-    <div class="mb-3">
-      <label class="form-label fw-bold">Selecciona una ronda:</label>
-      <select id="selectorRondas" class="form-select"></select>
+    <div id="accordionRondas" class="accordion mb-4">
+      <!-- Rondas dinámicas aquí -->
     </div>
 
-    <div class="mb-3">
-      <label class="form-label fw-bold">Pregunta:</label>
-      <input type="text" id="inputPregunta" class="form-control" />
-    </div>
-
-    <div id="respuestasContainer" class="mb-4">
-      <!-- Respuestas dinámicas -->
-    </div>
-
-    <div class="mb-4 d-flex flex-wrap gap-2">
-      <button id="btnAgregarRespuesta" class="btn btn-outline-primary">➕ Agregar respuesta</button>
-      <button id="btnGuardarRonda" class="btn btn-success">💾 Guardar esta ronda</button>
-      <button id="btnEliminarRonda" class="btn btn-danger">🗑️ Eliminar esta ronda</button>
-    </div>
-
-    <div class="mb-4 d-flex flex-wrap gap-2">
-      <button id="btnAgregarRonda" class="btn btn-secondary">➕ Nueva ronda</button>
-      <button id="btnGuardarPartida" class="btn btn-primary">📤 Guardar partida completa</button>
-    </div>
+    <div class="mb-4 d-flex justify-content-center flex-wrap gap-2">
+        <button id="btnAgregarRonda" class="btn btn-secondary">➕ Nueva ronda</button>
+        <button id="btnGuardarPartida" class="btn btn-primary">📤 Guardar partida completa</button>
+    </div>      
 
     <div class="text-center mt-4">
-        <button class="btn btn-outline-light" onclick="window.location.href='saved_games.html'">
-          ← Volver al menú
-        </button>
-      </div>      
+      <button class="btn btn-outline-light" onclick="window.location.href='saved_games.html'">
+        ← Volver al menú
+      </button>
+    </div>
   </div>
 
-  <script src="../src/edit_save_game.js"></script>
+  <!-- Toast para mensajes -->
+  <div class="toast-container position-fixed top-0 end-0 p-3"></div>
+
   <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../src/edit_saved_games.js"></script>
 </body>
 </html>
