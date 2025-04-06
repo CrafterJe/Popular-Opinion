@@ -1,0 +1,39 @@
+{
+  "actualizado": "2025-04-06T00:51:00.394Z",
+  "rondas": [
+    {
+      "pregunta": "cvb",
+      "respuestas": [
+        {
+          "texto": "c",
+          "puntos": 9
+        },
+        {
+          "texto": "v",
+          "puntos": 8
+        },
+        {
+          "texto": "b",
+          "puntos": 7
+        }
+      ]
+    },
+    {
+      "pregunta": "ghj",
+      "respuestas": [
+        {
+          "texto": "g",
+          "puntos": 9
+        },
+        {
+          "texto": "h",
+          "puntos": 8
+        },
+        {
+          "texto": "j",
+          "puntos": 7
+        }
+      ]
+    }
+  ]
+}

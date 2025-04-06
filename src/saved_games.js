@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const contenido = await window.electronAPI.cargarPartida(nombre);
           localStorage.setItem("partida_en_edicion", JSON.stringify(contenido));
           localStorage.setItem("nombre_partida", nombre);
-          window.location.href = "config.html";
+          window.location.href = "edit_saved_games.html";
         }
       });
     });

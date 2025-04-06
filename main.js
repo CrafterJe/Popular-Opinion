@@ -20,9 +20,9 @@ function createWindow() {
 }
 
 /* Config */
-ipcMain.on('guardar-juego-unico', (event, nombreOriginal, contenido) => {
+// Crear nuevo (con duplicado si existe)
+ipcMain.on('guardar-juego-nuevo', (event, nombreOriginal, contenido) => {
     const dir = path.join(__dirname, 'data');
-  
     if (!fs.existsSync(dir)) fs.mkdirSync(dir);
   
     const extension = path.extname(nombreOriginal);
@@ -41,12 +41,27 @@ ipcMain.on('guardar-juego-unico', (event, nombreOriginal, contenido) => {
   
     fs.writeFile(ruta, data, (err) => {
       if (err) {
-        console.error("Error al guardar partida:", err);
+        console.error("❌ Error al guardar nuevo juego:", err);
       } else {
-        console.log("Guardado exitoso:", nombreFinal);
+        console.log("✅ Nuevo juego guardado:", nombreFinal);
       }
     });
-});
+  });
+  
+  // Guardar edición (sobrescribe)
+  ipcMain.on('guardar-juego-unico', (event, nombreArchivo, contenido) => {
+    const ruta = path.join(__dirname, 'data', nombreArchivo);
+    const data = JSON.stringify(contenido, null, 2);
+  
+    fs.writeFile(ruta, data, (err) => {
+      if (err) {
+        console.error("❌ Error al sobrescribir:", err);
+      } else {
+        console.log("✅ Partida editada correctamente:", nombreArchivo);
+      }
+    });
+  });
+  
 /* Saved Games */
 ipcMain.handle('obtener-partidas', async () => {
     if (!fs.existsSync(dataPath)) fs.mkdirSync(dataPath);

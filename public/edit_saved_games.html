@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editar Partida Guardada</title>
+  <link rel="stylesheet" href="../src/styles.css" />
+</head>
+<body>
+  <div class="menu-container">
+    <h1>📝 Editar Partida</h1>
+
+    <label>Nombre de archivo:</label>
+    <input type="text" id="nombreArchivo" disabled><br><br>
+
+    <label>Selecciona una ronda:</label>
+    <select id="selectorRondas"></select><br><br>
+
+    <label>Pregunta:</label><br>
+    <input type="text" id="inputPregunta"><br><br>
+
+    <div id="respuestasContainer"></div>
+    <button id="btnAgregarRespuesta">➕ Agregar respuesta</button><br><br>
+
+    <button id="btnGuardarRonda">💾 Guardar esta ronda</button>
+    <button id="btnEliminarRonda">🗑️ Eliminar esta ronda</button><br><br>
+
+    <button id="btnAgregarRonda">➕ Nueva ronda</button>
+    <button id="btnGuardarPartida">📤 Guardar partida completa</button><br><br>
+
+    <button onclick="window.location.href = 'saved_games.html'">← Volver</button>
+  </div>
+
+  <script src="../src/edit_save_game.js"></script>
+</body>
+</html>

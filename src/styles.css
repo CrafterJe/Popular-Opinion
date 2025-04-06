@@ -41,7 +41,12 @@ button:hover {
   background-color: #005fa3;
 }
 /* Configuracion */
-
+body.config-page {
+    display: block;
+    height: auto;
+    padding: 2rem;
+    overflow-y: auto;
+  }
 .respuesta-item {
     margin-bottom: 1rem;
     display: flex;
@@ -72,6 +77,12 @@ button:hover {
   }
   
 /* Saved Games */
+body.saved-games {
+    display: block;
+    height: auto;
+    padding: 2rem;
+    overflow-y: auto;
+  }  
 #listaPartidas {
     list-style: none;
     padding: 0;
