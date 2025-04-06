@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const btnGuardarRonda = accordionItem.querySelector(".btnGuardarRonda");
       const btnEliminarRonda = accordionItem.querySelector(".btnEliminarRonda");
       const toggleBtn = accordionItem.querySelector(".toggle-collapse-btn");
+      const btnTitle = accordionItem.querySelector(".accordion-button");
       toggleBtn.addEventListener("click", () => {
         if (cambiosPendientes[index]) {
           mostrarToast("⚠️ Guarda los cambios antes de colapsar.");
@@ -148,10 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
         rondas[index] = { pregunta: nuevaPregunta, respuestas };
         cambiosPendientes[index] = false;
-  
-        const btnTitle = accordionItem.querySelector(".accordion-button");
-        btnTitle.textContent = `Ronda ${index + 1}: ${nuevaPregunta}`;
-  
+        actualizarTituloRonda();
         mostrarToast("✅ Ronda guardada.");
       });
   
@@ -183,12 +181,21 @@ document.addEventListener("DOMContentLoaded", () => {
       
       const monitorearCambios = () => {
         cambiosPendientes[index] = detectarCambios();
+        actualizarTituloRonda();
       };
       
       preguntaInput.addEventListener("input", monitorearCambios);
       respuestasContainer.addEventListener("input", monitorearCambios);
       respuestasContainer.addEventListener("change", monitorearCambios);
       
+      function actualizarTituloRonda() {
+        const pregunta = preguntaInput.value.trim() || "Sin pregunta";
+        const base = `Ronda ${index + 1}: ${pregunta}`;
+        const estado = cambiosPendientes[index]
+          ? ` <span class="text-warning fw-semibold">(SIN GUARDAR)</span>`
+          : "";
+        btnTitle.innerHTML = base + estado;
+      }          
   
       accordion.appendChild(accordionItem);
     }
