@@ -4,33 +4,52 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Editar Partida Guardada</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../src/styles.css" />
 </head>
-<body>
-  <div class="menu-container">
-    <h1>📝 Editar Partida</h1>
+<body class="bg-dark text-white d-flex align-items-center justify-content-center vh-100">
 
-    <label>Nombre de archivo:</label>
-    <input type="text" id="nombreArchivo" disabled><br><br>
+  <div class="container py-5">
+    <h1 class="mb-4 text-center">📝 Editar Partida</h1>
 
-    <label>Selecciona una ronda:</label>
-    <select id="selectorRondas"></select><br><br>
+    <div class="mb-3">
+      <label class="form-label fw-bold">Nombre de archivo:</label>
+      <input type="text" id="nombreArchivo" class="form-control" disabled />
+    </div>
 
-    <label>Pregunta:</label><br>
-    <input type="text" id="inputPregunta"><br><br>
+    <div class="mb-3">
+      <label class="form-label fw-bold">Selecciona una ronda:</label>
+      <select id="selectorRondas" class="form-select"></select>
+    </div>
 
-    <div id="respuestasContainer"></div>
-    <button id="btnAgregarRespuesta">➕ Agregar respuesta</button><br><br>
+    <div class="mb-3">
+      <label class="form-label fw-bold">Pregunta:</label>
+      <input type="text" id="inputPregunta" class="form-control" />
+    </div>
 
-    <button id="btnGuardarRonda">💾 Guardar esta ronda</button>
-    <button id="btnEliminarRonda">🗑️ Eliminar esta ronda</button><br><br>
+    <div id="respuestasContainer" class="mb-4">
+      <!-- Respuestas dinámicas -->
+    </div>
 
-    <button id="btnAgregarRonda">➕ Nueva ronda</button>
-    <button id="btnGuardarPartida">📤 Guardar partida completa</button><br><br>
+    <div class="mb-4 d-flex flex-wrap gap-2">
+      <button id="btnAgregarRespuesta" class="btn btn-outline-primary">➕ Agregar respuesta</button>
+      <button id="btnGuardarRonda" class="btn btn-success">💾 Guardar esta ronda</button>
+      <button id="btnEliminarRonda" class="btn btn-danger">🗑️ Eliminar esta ronda</button>
+    </div>
 
-    <button onclick="window.location.href = 'saved_games.html'">← Volver</button>
+    <div class="mb-4 d-flex flex-wrap gap-2">
+      <button id="btnAgregarRonda" class="btn btn-secondary">➕ Nueva ronda</button>
+      <button id="btnGuardarPartida" class="btn btn-primary">📤 Guardar partida completa</button>
+    </div>
+
+    <div class="text-center mt-4">
+        <button class="btn btn-outline-light" onclick="window.location.href='saved_games.html'">
+          ← Volver al menú
+        </button>
+      </div>      
   </div>
 
   <script src="../src/edit_save_game.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

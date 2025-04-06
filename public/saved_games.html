@@ -4,15 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Partidas Guardadas – Popular Opinion</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../src/styles.css" />
 </head>
-<body class="saved-games">
-  <div class="menu-container">
-    <h1>📁 Partidas Guardadas</h1>
-    <ul id="listaPartidas"></ul>
-    <button onclick="window.location.href='index.html'">← Volver al menú</button>
+<body class="bg-dark text-white">
+
+  <div class="container py-5">
+    <h1 class="text-center mb-4">📁 Partidas Guardadas</h1>
+
+    <ul id="listaPartidas" class="list-unstyled d-flex flex-column gap-3">
+      <!-- Las partidas se cargarán aquí -->
+    </ul>
+
+    <div class="text-center mt-4">
+      <button class="btn btn-outline-light" onclick="window.location.href='index.html'">
+        ← Volver al menú
+      </button>
+    </div>
   </div>
 
   <script src="../src/saved_games.js" defer></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -4,13 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jugar – Popular Opinion</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../src/styles.css" />
 </head>
-<body>
-  <div class="menu-container">
-    <h1>🕹️ Modo Juego</h1>
-    <p>Aquí se cargará el juego a partir del archivo JSON.</p>
-    <button onclick="window.location.href='index.html'">← Volver al menú</button>
+<body class="bg-dark text-white">
+
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="text-center p-5 bg-secondary rounded shadow-lg" style="max-width: 500px; width: 100%;">
+      <h1 class="mb-4 display-6 fw-bold">🕹️ Modo Juego</h1>
+      <p class="mb-4">Aquí se cargará el juego a partir del archivo JSON.</p>
+      <button onclick="window.location.href='index.html'" class="btn btn-outline-light btn-lg">
+        ← Volver al menú
+      </button>
+    </div>
   </div>
+
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

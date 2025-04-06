@@ -4,16 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Popular Opinion</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../src/styles.css" />
 </head>
-<body>
-  <div class="menu-container">
-    <h1>🎮 Popular Opinion</h1>
-    <button id="btnPlay">Jugar</button>
-    <button id="btnConfig">Configuración</button>
-    <button id="btnSavedGames">Partidas Guardadas</button>
+<body class="bg-dark text-white">
+
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="text-center p-5 bg-secondary rounded shadow-lg" style="max-width: 400px; width: 100%;">
+      <h1 class="mb-4 display-6 fw-bold">🎮 Popular Opinion</h1>
+      <p class="mb-4">Un divertido juego de preguntas por equipos</p>
+
+      <div class="d-grid gap-3">
+        <button id="btnPlay" class="btn btn-success btn-lg">▶️ Jugar</button>
+        <button id="btnConfig" class="btn btn-primary btn-lg">⚙️ Configuración</button>
+        <button id="btnSavedGames" class="btn btn-outline-light btn-lg">💾 Partidas Guardadas</button>
+      </div>
+    </div>
   </div>
 
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../src/renderer.js"></script>
 </body>
 </html>

@@ -4,34 +4,50 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Configuración – Popular Opinion</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../src/styles.css" />
 </head>
-<body>
-  <div class="menu-container">
-    <h1>⚙️ Crear Ronda</h1>
+<body class="bg-dark text-white py-5">
 
-    <label for="inputPregunta">Pregunta:</label><br />
-    <input type="text" id="inputPregunta" placeholder="Ej. ¿Cuál es tu fruta favorita?" /><br /><br />
+  <div class="container">
+    <h1 class="mb-4 text-center">⚙️ Crear Ronda</h1>
 
-    <div id="respuestasContainer">
-      <!-- Aquí se agregarán los inputs dinámicos -->
+    <div class="mb-3">
+      <label for="inputPregunta" class="form-label fw-bold">Pregunta:</label>
+      <input type="text" id="inputPregunta" class="form-control" placeholder="Ej. ¿Cuál es tu fruta favorita?" />
     </div>
 
-    <button id="btnAgregarRespuesta">➕ Agregar Respuesta</button>
-    <button id="btnGuardarRonda">✅ Agregar Ronda</button>
+    <div id="respuestasContainer" class="mb-3">
+      <!-- Respuestas dinámicas -->
+    </div>
+
+    <div class="mb-4 d-flex justify-content-center flex-wrap gap-2">
+      <button id="btnAgregarRespuesta" class="btn btn-primary">➕ Agregar Respuesta</button>
+      <button id="btnGuardarRonda" class="btn btn-success">✅ Agregar Ronda</button>
+    </div>
 
     <hr />
-    <h2>📝 Rondas Agregadas</h2>
-    <ul id="listaRondas"></ul>
-    <hr />
-    <label for="nombreArchivo">Nombre del archivo:</label><br />
-    <input type="text" id="nombreArchivo" placeholder="Ej. frutas_pregunta1" /><br /><br />
 
-    <button id="btnGuardarJuego">💾 Guardar Juego</button>
+    <h2 class="h4 mb-3">📝 Rondas Agregadas</h2>
+    <ul id="listaRondas" class="list-group mb-4"></ul>
 
-    <button onclick="window.location.href='index.html'">← Volver al menú</button>
+    <div class="mb-3">
+      <label for="nombreArchivo" class="form-label fw-bold">Nombre del archivo:</label>
+      <input type="text" id="nombreArchivo" class="form-control" placeholder="Ej. frutas_pregunta1" />
+    </div>
+
+    <div class="d-flex justify-content-center gap-2 flex-wrap">
+      <button id="btnGuardarJuego" class="btn btn-primary">💾 Guardar Juego</button>
+    </div>
+
+    <div class="text-center mt-4">
+      <button class="btn btn-outline-light" onclick="window.location.href='index.html'">
+        ← Volver al menú
+      </button>
+    </div>
   </div>
 
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../src/config.js" defer></script>
 </body>
 </html>
