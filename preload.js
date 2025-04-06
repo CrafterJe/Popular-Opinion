@@ -6,4 +6,5 @@ contextBridge.exposeInMainWorld('electronAPI', {
     eliminarPartida: (nombre) => ipcRenderer.send('eliminar-partida', nombre),
     cargarPartida: (nombre) => ipcRenderer.invoke('cargar-partida', nombre),
     guardarJuegoUnico: (nombre, contenido) => ipcRenderer.send('guardar-juego-unico', nombre, contenido),
+    
   });

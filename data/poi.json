@@ -1,0 +1,22 @@
+{
+  "actualizado": "2025-04-06T00:07:40.861Z",
+  "rondas": [
+    {
+      "pregunta": "poi",
+      "respuestas": [
+        {
+          "texto": "p",
+          "puntos": 9
+        },
+        {
+          "texto": "o",
+          "puntos": 8
+        },
+        {
+          "texto": "i",
+          "puntos": 7
+        }
+      ]
+    }
+  ]
+}

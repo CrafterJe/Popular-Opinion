@@ -14,40 +14,39 @@ function createWindow() {
       nodeIntegration: false
     }
   });
-  win.maximize();
   win.setMenu(null);
   win.loadFile(path.join(__dirname, 'public', 'index.html'));
+  win.webContents.openDevTools();
 }
 
 /* Config */
 ipcMain.on('guardar-juego-unico', (event, nombreOriginal, contenido) => {
-  const dir = path.join(__dirname, 'data');
-
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir);
-
-  const extension = path.extname(nombreOriginal);
-  const base = path.basename(nombreOriginal, extension);
-
-  let nombreFinal = nombreOriginal;
-  let contador = 1;
-
-  while (fs.existsSync(path.join(dir, nombreFinal))) {
-    nombreFinal = `${base} (${contador})${extension}`;
-    contador++;
-  }
-
-  const ruta = path.join(dir, nombreFinal);
-  const data = JSON.stringify(contenido, null, 2);
-
-  fs.writeFile(ruta, data, (err) => {
-    if (err) {
-      console.error("Error al guardar partida:", err);
-    } else {
-      console.log("Guardado exitoso:", nombreFinal);
+    const dir = path.join(__dirname, 'data');
+  
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+  
+    const extension = path.extname(nombreOriginal);
+    const base = path.basename(nombreOriginal, extension);
+  
+    let nombreFinal = nombreOriginal;
+    let contador = 1;
+  
+    while (fs.existsSync(path.join(dir, nombreFinal))) {
+      nombreFinal = `${base} (${contador})${extension}`;
+      contador++;
     }
-  });
+  
+    const ruta = path.join(dir, nombreFinal);
+    const data = JSON.stringify(contenido, null, 2);
+  
+    fs.writeFile(ruta, data, (err) => {
+      if (err) {
+        console.error("Error al guardar partida:", err);
+      } else {
+        console.log("Guardado exitoso:", nombreFinal);
+      }
+    });
 });
-
 /* Saved Games */
 ipcMain.handle('obtener-partidas', async () => {
     if (!fs.existsSync(dataPath)) fs.mkdirSync(dataPath);
@@ -71,6 +70,7 @@ ipcMain.handle('cargar-partida', async (event, nombre) => {
   }
   return null;
 });
+
 
 app.whenReady().then(() => {
   createWindow();
