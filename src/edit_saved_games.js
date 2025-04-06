@@ -3,7 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnGuardarPartida = document.getElementById("btnGuardarPartida");
     const inputNombreArchivo = document.getElementById("nombreArchivo");
     const accordion = document.getElementById("accordionRondas");
-  
+    const btnVolverMenu = document.getElementById("btnVolverMenu");
+    const modal = new bootstrap.Modal(document.getElementById("modalConfirmarSalida"));
+    const btnSalirSinGuardar = document.getElementById("btnSalirSinGuardar");
+
     let rondas = [];
     let cambiosPendientes = {};
   
@@ -229,6 +232,20 @@ document.addEventListener("DOMContentLoaded", () => {
   
       window.electronAPI.guardarJuegoUnico(nombre, data);
       mostrarToast("🎉 Partida guardada exitosamente.");
+    });
+
+    btnVolverMenu.addEventListener("click", () => {
+      const hayCambios = Object.values(cambiosPendientes).some(p => p === true);
+      if (hayCambios) {
+        modal.show();
+      } else {
+        window.location.href = "saved_games.html";
+      }
+    });
+    
+    btnSalirSinGuardar.addEventListener("click", () => {
+      modal.hide();
+      window.location.href = "saved_games.html";
     });
   });
   

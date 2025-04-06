@@ -9,7 +9,7 @@
 </head>
 <body class="bg-dark text-white py-5">
 
-  <div class="container">
+    <div class="container">
     <h1 class="mb-4 text-center">📝 Editar Partida</h1>
 
     <div class="mb-3">
@@ -27,15 +27,33 @@
     </div>      
 
     <div class="text-center mt-4">
-      <button class="btn btn-outline-light" onclick="window.location.href='saved_games.html'">
-        ← Volver al menú
-      </button>
+        <button id="btnVolverMenu" class="btn btn-outline-light">
+            ← Volver
+        </button>          
     </div>
   </div>
 
-  <!-- Toast para mensajes -->
-  <div class="toast-container position-fixed top-0 end-0 p-3"></div>
-
+    <!-- Toast para mensajes -->
+    <div class="toast-container position-fixed top-0 end-0 p-3"></div>
+    <!-- Modal de confirmación -->
+    <div class="modal fade" id="modalConfirmarSalida" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content bg-dark text-white shadow-lg" style="backdrop-filter: blur(8px); background-color: rgba(33,37,41,0.9);">
+            <div class="modal-header border-0">
+              <h5 class="modal-title">¿Salir sin guardar?</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              Tienes cambios sin guardar. ¿Estás seguro de que quieres volver al menú?
+            </div>
+            <div class="modal-footer border-0">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button id="btnSalirSinGuardar" type="button" class="btn btn-danger">Salir sin guardar</button>
+            </div>
+          </div>
+        </div>
+    </div>
+  
   <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../src/edit_saved_games.js"></script>
 </body>
