@@ -1,13 +1,15 @@
 export async function inicializarSelectorDePartidas() {
     const lista = document.getElementById("dropdownListaPartidas");
     const buscador = document.getElementById("buscadorPartidas");
-    const orden = document.getElementById("ordenPartidas");
+    const ordenMenu = document.getElementById("ordenPartidasMenu");
+    const textoOrden = document.getElementById("textoOrdenPartidas");
     const paginacion = document.getElementById("paginacionPartidas");
     const partidaInfo = document.getElementById("partidaSeleccionada");
     const btnIniciar = document.getElementById("btnIniciar");
   
     let partidas = [];
     let paginaActual = 1;
+    let ordenActual = "recientes";
     const partidasPorPagina = 3;
   
     const archivos = await window.electronAPI.obtenerPartidas();
@@ -25,7 +27,7 @@ export async function inicializarSelectorDePartidas() {
   
     function renderLista() {
       const textoBusqueda = buscador.value.toLowerCase();
-      const ordenSeleccionado = orden.value;
+      const ordenSeleccionado = ordenActual;
   
       let filtradas = partidas.filter(p => p.nombre.toLowerCase().includes(textoBusqueda));
   
@@ -91,11 +93,16 @@ export async function inicializarSelectorDePartidas() {
       paginaActual = 1;
       renderLista();
     });
-  
-    orden.addEventListener("change", () => {
-      paginaActual = 1;
-      renderLista();
-    });
+
+    ordenMenu.addEventListener("click", (e) => {
+        const selected = e.target.closest("button");
+        if (!selected) return;
+      
+        ordenActual = selected.dataset.orden;
+        textoOrden.textContent = selected.textContent;
+        paginaActual = 1;
+        renderLista();
+      });      
   
     renderLista();
   }

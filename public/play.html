@@ -16,11 +16,17 @@
       <p class="mb-4 text-muted">Selecciona una partida para comenzar:</p>
 
       <div class="mb-3">
-        <input type="text" id="buscadorPartidas" class="form-control mb-2" placeholder="🔍 Buscar partida por nombre...">
-        <select id="ordenPartidas" class="form-select mb-2">
-          <option value="recientes">📅 Más recientes primero</option>
-          <option value="antiguas">🕒 Más antiguas primero</option>
-        </select>
+        <div class="input-group mb-3">
+          <span class="input-group-text bg-white">🔍</span>
+          <input type="text" id="buscadorPartidas" class="form-control" placeholder="Buscar partida...">
+          <button class="btn btn-light text-start dropdown-toggle border" type="button" id="ordenPartidasBtn" data-bs-toggle="dropdown" aria-expanded="false">
+            <span id="textoOrdenPartidas">📅 Más recientes primero</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" id="ordenPartidasMenu">
+            <li><button class="dropdown-item orden-partida-option" data-orden="recientes">📅 Más recientes primero</button></li>
+            <li><button class="dropdown-item orden-partida-option" data-orden="antiguas">🕒 Más antiguas primero</button></li>
+          </ul>
+        </div>        
         <ul class="list-group text-start" id="dropdownListaPartidas"></ul>
         <div id="paginacionPartidas" class="d-flex justify-content-center mt-3 gap-2 flex-wrap"></div>
       </div>
