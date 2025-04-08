@@ -9,16 +9,36 @@
 </head>
 <body class="bg-dark text-white">
 
-  <div class="d-flex justify-content-center align-items-center vh-100">
-    <div class="text-center p-5 bg-secondary rounded shadow-lg" style="max-width: 500px; width: 100%;">
-      <h1 class="mb-4 display-6 fw-bold">🕹️ Modo Juego</h1>
-      <p class="mb-4">Aquí se cargará el juego a partir del archivo JSON.</p>
-      <button onclick="window.location.href='index.html'" class="btn btn-outline-light btn-lg">
+  <div class="container py-5">
+    <div class="card-juego text-center">
+      <div class="icono-juego mb-2">🕹️</div>
+      <h1 class="mb-3 fw-bold">Modo Juego</h1>
+      <p class="mb-4 text-muted">Selecciona una partida para comenzar:</p>
+
+      <div class="mb-3">
+        <input type="text" id="buscadorPartidas" class="form-control mb-2" placeholder="🔍 Buscar partida">
+        <select id="ordenPartidas" class="form-select mb-2">
+          <option value="recientes">📅 Más recientes primero</option>
+          <option value="antiguas">🕒 Más antiguas primero</option>
+        </select>
+        <ul class="list-group text-start" id="dropdownListaPartidas"></ul>
+      </div>      
+
+      <div id="partidaSeleccionada" class="mb-3 text-info fw-bold"></div>
+
+      <button id="btnIniciar" class="btn btn-success w-100" disabled>▶️ Iniciar Juego</button>
+
+      <hr class="border-secondary my-4" />
+      <button onclick="window.location.href='index.html'" class="btn btn-outline-light w-100">
         ← Volver al menú
       </button>
     </div>
   </div>
 
   <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+    import { inicializarSelectorDePartidas } from "../src/logic/gameManager.js";
+    document.addEventListener("DOMContentLoaded", inicializarSelectorDePartidas);
+  </script>
 </body>
 </html>
