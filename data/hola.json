@@ -1,0 +1,26 @@
+{
+  "actualizado": "2025-04-08T01:26:58.690Z",
+  "rondas": [
+    {
+      "pregunta": "hola",
+      "respuestas": [
+        {
+          "texto": "h",
+          "puntos": 9
+        },
+        {
+          "texto": "o",
+          "puntos": 8
+        },
+        {
+          "texto": "l",
+          "puntos": 7
+        },
+        {
+          "texto": "a",
+          "puntos": 6
+        }
+      ]
+    }
+  ]
+}
