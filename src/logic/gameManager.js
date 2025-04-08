@@ -11,6 +11,7 @@ export async function inicializarSelectorDePartidas() {
     let paginaActual = 1;
     let ordenActual = "recientes";
     const partidasPorPagina = 3;
+    let partidaSeleccionadaNombre = null; // 👈 variable local temporal
   
     const archivos = await window.electronAPI.obtenerPartidas();
     if (!archivos || archivos.length === 0) {
@@ -39,19 +40,25 @@ export async function inicializarSelectorDePartidas() {
       if (paginaActual > totalPaginas) paginaActual = 1;
   
       const inicio = (paginaActual - 1) * partidasPorPagina;
-      const fin = inicio + partidasPorPagina;
-      const pagina = filtradas.slice(inicio, fin);
+      const pagina = filtradas.slice(inicio, inicio + partidasPorPagina);
   
       lista.innerHTML = "";
   
       if (pagina.length === 0) {
         lista.innerHTML = `<li class="list-group-item text-muted">No se encontraron partidas.</li>`;
+        paginacion.innerHTML = "";
+        return;
       }
   
       pagina.forEach(({ nombre, fecha, contenido }) => {
         const item = document.createElement("li");
         item.className = "list-group-item list-group-item-action";
         item.style.cursor = "pointer";
+  
+        if (nombre === partidaSeleccionadaNombre) {
+          item.classList.add("selected"); // 👈 aplicar clase visual si ya estaba seleccionada
+        }
+  
         item.innerHTML = `
           <div class="d-flex justify-content-between align-items-center">
             <div>
@@ -61,13 +68,26 @@ export async function inicializarSelectorDePartidas() {
             <span class="text-primary">▶️</span>
           </div>
         `;
+  
         item.addEventListener("click", () => {
+          // quitar selección previa
+          document.querySelectorAll("#dropdownListaPartidas .list-group-item").forEach(el => el.classList.remove("selected"));
+          // seleccionar actual
+          item.classList.add("selected");
+  
+          // guardar en memoria temporal
+          partidaSeleccionadaNombre = nombre;
+  
+          // guardar solo el contenido (puedes mantener esto en localStorage si lo usas para jugar)
           localStorage.setItem("partida_en_juego", JSON.stringify(contenido));
           localStorage.setItem("nombre_partida", nombre);
+  
+          // mostrar y habilitar
           partidaInfo.textContent = `📄 Seleccionada: ${nombre}`;
           btnIniciar.disabled = false;
           btnIniciar.onclick = () => window.location.href = "play_round.html";
         });
+  
         lista.appendChild(item);
       });
   
@@ -93,16 +113,16 @@ export async function inicializarSelectorDePartidas() {
       paginaActual = 1;
       renderLista();
     });
-
+  
     ordenMenu.addEventListener("click", (e) => {
-        const selected = e.target.closest("button");
-        if (!selected) return;
-      
-        ordenActual = selected.dataset.orden;
-        textoOrden.textContent = selected.textContent;
-        paginaActual = 1;
-        renderLista();
-      });      
+      const selected = e.target.closest("button");
+      if (!selected) return;
+  
+      ordenActual = selected.dataset.orden;
+      textoOrden.textContent = selected.textContent;
+      paginaActual = 1;
+      renderLista();
+    });
   
     renderLista();
   }
