@@ -12,9 +12,17 @@
   <div class="container py-5">
     <h1 class="text-center mb-4">📁 Partidas Guardadas</h1>
 
-    <ul id="listaPartidas" class="list-unstyled d-flex flex-column gap-3">
-      <!-- Las partidas se cargarán aquí -->
-    </ul>
+    <div class="mb-4">
+      <input type="text" id="buscador" class="form-control mb-2" placeholder="🔍 Buscar partida...">
+      <select id="orden" class="form-select">
+        <option value="recientes">📅 Más recientes primero</option>
+        <option value="antiguas">🕒 Más antiguas primero</option>
+      </select>
+    </div>
+
+    <ul id="listaPartidas" class="list-unstyled d-flex flex-column gap-3"></ul>
+
+    <div id="paginacion" class="d-flex justify-content-center gap-2 flex-wrap mt-3"></div>
 
     <div class="text-center mt-4">
       <button class="btn btn-outline-light" onclick="window.location.href='index.html'">
