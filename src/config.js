@@ -73,14 +73,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }  
   btnAgregarRespuesta.addEventListener("click", crearCampoRespuesta);
+
   function resetearFormulario() {
     inputPregunta.value = "";
     respuestasContainer.innerHTML = "";
     numRespuestas = 0;
     rondasAgregadas.length = 0;
+    document.getElementById("nombreArchivo").value = "";
     for (let i = 0; i < 3; i++) crearCampoRespuesta();
     mostrarRondasAgregadas(); // limpia la lista de rondas mostrada
   }  
+
   // Crear mínimo 3 respuestas al iniciar
   for (let i = 0; i < 3; i++) {
       console.log("Creando respuesta #" + (i+1));
