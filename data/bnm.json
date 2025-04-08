@@ -1,0 +1,22 @@
+{
+  "actualizado": "2025-04-08T01:12:39.540Z",
+  "rondas": [
+    {
+      "pregunta": "bnm",
+      "respuestas": [
+        {
+          "texto": "b",
+          "puntos": 9
+        },
+        {
+          "texto": "n",
+          "puntos": 8
+        },
+        {
+          "texto": "m",
+          "puntos": 7
+        }
+      ]
+    }
+  ]
+}
