@@ -1,0 +1,39 @@
+{
+  "actualizado": "2025-04-08T00:19:35.076Z",
+  "rondas": [
+    {
+      "pregunta": "poi",
+      "respuestas": [
+        {
+          "texto": "p",
+          "puntos": 9
+        },
+        {
+          "texto": "o",
+          "puntos": 8
+        },
+        {
+          "texto": "i",
+          "puntos": 7
+        }
+      ]
+    },
+    {
+      "pregunta": "lkj",
+      "respuestas": [
+        {
+          "texto": "l",
+          "puntos": 9
+        },
+        {
+          "texto": "k",
+          "puntos": 8
+        },
+        {
+          "texto": "j",
+          "puntos": 7
+        }
+      ]
+    }
+  ]
+}

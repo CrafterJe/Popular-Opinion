@@ -107,19 +107,12 @@ body.saved-games {
   backdrop-filter: blur(8px);
   border-radius: 1rem;
   padding: 2rem;
-  max-width: 500px;
+  max-width: 600px;
   margin: auto;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
-.card-juego h1 {
-  font-size: 2rem;
-}
 .icono-juego {
   font-size: 3rem;
-}
-.dropdown-menu {
-  max-height: 300px;
-  overflow-y: auto;
 }
 #dropdownListaPartidas .list-group-item {
   transition: background-color 0.2s ease;

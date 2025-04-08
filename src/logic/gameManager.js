@@ -2,10 +2,13 @@ export async function inicializarSelectorDePartidas() {
     const lista = document.getElementById("dropdownListaPartidas");
     const buscador = document.getElementById("buscadorPartidas");
     const orden = document.getElementById("ordenPartidas");
+    const paginacion = document.getElementById("paginacionPartidas");
     const partidaInfo = document.getElementById("partidaSeleccionada");
     const btnIniciar = document.getElementById("btnIniciar");
   
     let partidas = [];
+    let paginaActual = 1;
+    const partidasPorPagina = 3;
   
     const archivos = await window.electronAPI.obtenerPartidas();
     if (!archivos || archivos.length === 0) {
@@ -27,21 +30,23 @@ export async function inicializarSelectorDePartidas() {
       let filtradas = partidas.filter(p => p.nombre.toLowerCase().includes(textoBusqueda));
   
       filtradas.sort((a, b) => {
-        if (ordenSeleccionado === "recientes") {
-          return b.fecha - a.fecha;
-        } else {
-          return a.fecha - b.fecha;
-        }
+        return ordenSeleccionado === "recientes" ? b.fecha - a.fecha : a.fecha - b.fecha;
       });
+  
+      const totalPaginas = Math.ceil(filtradas.length / partidasPorPagina);
+      if (paginaActual > totalPaginas) paginaActual = 1;
+  
+      const inicio = (paginaActual - 1) * partidasPorPagina;
+      const fin = inicio + partidasPorPagina;
+      const pagina = filtradas.slice(inicio, fin);
   
       lista.innerHTML = "";
   
-      if (filtradas.length === 0) {
+      if (pagina.length === 0) {
         lista.innerHTML = `<li class="list-group-item text-muted">No se encontraron partidas.</li>`;
-        return;
       }
   
-      filtradas.forEach(({ nombre, fecha, contenido }) => {
+      pagina.forEach(({ nombre, fecha, contenido }) => {
         const item = document.createElement("li");
         item.className = "list-group-item list-group-item-action";
         item.style.cursor = "pointer";
@@ -55,7 +60,7 @@ export async function inicializarSelectorDePartidas() {
           </div>
         `;
         item.addEventListener("click", () => {
-          localStorage.setItem("partida_en_juego", JSON.stringify(contenido));
+          localStorage.setItem("partida_en_juego", JSON.stringify(contentido));
           localStorage.setItem("nombre_partida", nombre);
           partidaInfo.textContent = `📄 Seleccionada: ${nombre}`;
           btnIniciar.disabled = false;
@@ -63,10 +68,35 @@ export async function inicializarSelectorDePartidas() {
         });
         lista.appendChild(item);
       });
+  
+      renderPaginacion(totalPaginas);
     }
   
-    buscador.addEventListener("input", renderLista);
-    orden.addEventListener("change", renderLista);
+    function renderPaginacion(total) {
+      paginacion.innerHTML = "";
+  
+      for (let i = 1; i <= total; i++) {
+        const btn = document.createElement("button");
+        btn.className = `btn btn-sm ${i === paginaActual ? "btn-primary" : "btn-outline-light"}`;
+        btn.textContent = i;
+        btn.addEventListener("click", () => {
+          paginaActual = i;
+          renderLista();
+        });
+        paginacion.appendChild(btn);
+      }
+    }
+  
+    buscador.addEventListener("input", () => {
+      paginaActual = 1;
+      renderLista();
+    });
+  
+    orden.addEventListener("change", () => {
+      paginaActual = 1;
+      renderLista();
+    });
+  
     renderLista();
   }
   
