@@ -62,7 +62,7 @@ export async function inicializarSelectorDePartidas() {
           </div>
         `;
         item.addEventListener("click", () => {
-          localStorage.setItem("partida_en_juego", JSON.stringify(contentido));
+          localStorage.setItem("partida_en_juego", JSON.stringify(contenido));
           localStorage.setItem("nombre_partida", nombre);
           partidaInfo.textContent = `📄 Seleccionada: ${nombre}`;
           btnIniciar.disabled = false;
