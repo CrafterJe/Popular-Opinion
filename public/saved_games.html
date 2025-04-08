@@ -12,13 +12,17 @@
   <div class="container py-5">
     <h1 class="text-center mb-4">📁 Partidas Guardadas</h1>
 
-    <div class="mb-4">
-      <input type="text" id="buscador" class="form-control mb-2" placeholder="🔍 Buscar partida...">
-      <select id="orden" class="form-select">
-        <option value="recientes">📅 Más recientes primero</option>
-        <option value="antiguas">🕒 Más antiguas primero</option>
-      </select>
-    </div>
+    <div class="input-group mb-4">
+      <span class="input-group-text bg-white">🔍</span>
+      <input type="text" id="buscador" class="form-control" placeholder="Buscar partida...">
+      <button class="btn btn-light text-start dropdown-toggle border" type="button" id="ordenBtn" data-bs-toggle="dropdown" aria-expanded="false">
+        <span id="textoOrden">📅 Más recientes primero</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end" id="ordenMenu">
+        <li><button class="dropdown-item orden-option" data-orden="recientes">📅 Más recientes primero</button></li>
+        <li><button class="dropdown-item orden-option" data-orden="antiguas">🕒 Más antiguas primero</button></li>
+      </ul>
+    </div>    
 
     <ul id="listaPartidas" class="list-unstyled d-flex flex-column gap-3"></ul>
 
@@ -31,7 +35,7 @@
     </div>
   </div>
 
-  <script src="../src/saved_games.js" defer></script>
   <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../src/saved_games.js" defer></script>
 </body>
 </html>

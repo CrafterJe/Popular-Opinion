@@ -68,7 +68,10 @@ body.saved-games {
   .card-partida:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }  
-
+  #ordenMenu .dropdown-item:hover {
+    background-color: #212529; /* Este es el color gris oscuro similar al que viste */
+    color: #fff; /* Texto blanco para mejor contraste */
+  }
 /* TOAST */
 .toast-container {
     position: fixed;

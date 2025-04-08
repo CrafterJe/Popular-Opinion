@@ -1,12 +1,14 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const lista = document.getElementById("listaPartidas");
   const buscador = document.getElementById("buscador");
-  const orden = document.getElementById("orden");
+  const ordenBtn = document.getElementById("ordenBtn");
+  const ordenMenu = document.getElementById("ordenMenu");
   const paginacion = document.getElementById("paginacion");
 
   const partidasPorPagina = 6;
   let paginaActual = 1;
   let partidas = [];
+  let ordenActual = "recientes";
 
   const archivos = await window.electronAPI.obtenerPartidas();
 
@@ -18,7 +20,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function renderLista() {
     const filtro = buscador.value.toLowerCase();
-    const ordenActual = orden.value;
 
     let filtradas = partidas.filter(p => p.nombre.toLowerCase().includes(filtro));
 
@@ -106,7 +107,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderLista();
   });
 
-  orden.addEventListener("change", () => {
+  ordenMenu.addEventListener("click", (e) => {
+    const selected = e.target.closest("button");
+    if (!selected) return;
+
+    ordenActual = selected.dataset.orden;
+    ordenBtn.textContent = selected.textContent;
     paginaActual = 1;
     renderLista();
   });
